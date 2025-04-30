@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DiscoStacja</string>
+
+    <string name="general_cancel">Anuluj</string>
+
+    <string name="main_screen_regards_settings_title">Powiadomienia</string>
+    <string name="main_screen_regards_settings_desc">Zaznacz jeśli chcesz otrzymywać powiadomienia gdy nastąpi zmiana prezentera lub audycji na jednej ze stacji radiowych!</string>
+    <string name="main_screen_regards_button">Pozdrowienia</string>
+    <string name="main_screen_schedule_button">Ramówka</string>
+    <string name="main_screen_share_text">Pobierz aplikację DiscoStacja.eu \nhttps://play.google.com/store/apps/details?id=eu.discostacja</string>
+    <string name="main_screen_facebook_url">https://www.facebook.com/share/1AhPtyYgNV/</string>
+    <string name="main_screen_web_url">https://discostacja.eu/</string>
+
+    <string name="topbar_mail_title">Kontakt z aplikacji</string>
+    <string name="topbar_mail_app_not_found">Brak aplikacji do obsługi e-maili.</string>
+    <string name="topbar_mail">kontakt@discostacja.eu</string>
+</resources>

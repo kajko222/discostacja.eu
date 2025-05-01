@@ -14,4 +14,6 @@
     <string name="topbar_mail_title">Kontakt z aplikacji</string>
     <string name="topbar_mail_app_not_found">Brak aplikacji do obsługi e-maili.</string>
     <string name="topbar_mail">kontakt@discostacja.eu</string>
+
+    <string name="schedule_screen_top_bar_title">Tygodniowa Ramówka</string>
 </resources>

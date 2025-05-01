@@ -23,7 +23,7 @@ object AppPreferences : SettingsModel(DataStoreStorage.create(name = "disco_stac
                 plsUrl = "https://s3.slotex.pl/shoutcast/7442/listen.pls",
                 marqueeUrl = "https://discostacja.panelradiowy.pl/styl11/staty2.php?ip=aS9wOHdiMnRROGRKTHRqWDBwOE5TUT09&port=b1hCVWNaK3RkNnVnemRQeGUxdVZkUT09&v=2&type=1&style=6&time=60&color=ffffff&idp=79166&listeners=2#",
                 jsoupAvatarUrl = "https://discostacja.panelradiowy.pl/embed.php?script=avatar&size=120",
-                regardsFormUrl = "https://discostacja.panelradiowy.pl/embed.php?script=onlineform",
+                regardsFormUrl = "https://discostacja.panelradiowy.pl/embed.php?script=pozdrowienia",
                 scheduleUrl = "https://discostacja.panelradiowy.pl/embed.php?script=ramowka"
             ),
             RadioStation(
@@ -31,7 +31,7 @@ object AppPreferences : SettingsModel(DataStoreStorage.create(name = "disco_stac
                 plsUrl = "https://s3.slotex.pl/shoutcast/7448/listen.pls",
                 marqueeUrl = "https://danceparty.panelradiowy.pl/styl11/staty2.php?ip=aS9wOHdiMnRROGRKTHRqWDBwOE5TUT09&port=eEFYVVVXeEhnb0JReDFFOS9oNkpBZz09&v=2&type=1&style=1&time=60&color=000000&idp=79154&listeners=2",
                 jsoupAvatarUrl = "https://danceparty.panelradiowy.pl/embed.php?script=avatar&size=120",
-                regardsFormUrl = "https://danceparty.panelradiowy.pl/embed.php?script=onlineform",
+                regardsFormUrl = "https://danceparty.panelradiowy.pl/embed.php?script=pozdrowienia",
                 scheduleUrl = "https://danceparty.panelradiowy.pl/embed.php?script=ramowka"
             )
         )

@@ -112,6 +112,9 @@ fun MainScreen(
                 context.stopService(serviceIntent)
             }
             shouldMonitoringForeground = true
+            coroutineScope.launch {
+                marqueeFetcher.updateMarquee()
+            }
         }
     )
 

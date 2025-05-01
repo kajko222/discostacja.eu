@@ -33,7 +33,7 @@ fun StationShimmer() {
     ) {
         Box(
             modifier = Modifier
-                .size(70.dp)
+                .size(90.dp)
                 .background(Color.LightGray, shape = RoundedCornerShape(4.dp))
         )
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {

@@ -1,6 +1,7 @@
 package eu.discostacja.ui.screen.main
 
 import android.content.Intent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
@@ -44,7 +45,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startForegroundService
+import coil3.ImageLoader
 import coil3.compose.SubcomposeAsyncImage
+import coil3.compose.rememberAsyncImagePainter
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.kotpreferences.collectSetting
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
@@ -77,6 +80,8 @@ fun MainScreen(
     navigator: DestinationsNavigator,
     viewModel: MainViewModel = koinViewModel()
 ) {
+
+    val imageLoader by inject<ImageLoader>(ImageLoader::class.java)
     val coroutineScope = rememberCoroutineScope()
 
     var showBackgroundProblemsDialog by rememberSaveable { mutableStateOf(true) }
@@ -175,16 +180,11 @@ fun MainScreen(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(12.dp)
                         ) {
-                            SubcomposeAsyncImage(
-                                model = marqueeInfo.avatarUrl,
-                                loading = {
-                                    Box(
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        CircularProgressIndicator()
-                                    }
-                                },
+                            Image(
+                                painter = rememberAsyncImagePainter(
+                                    model = marqueeInfo.avatarUrl,
+                                    imageLoader = imageLoader,
+                                ),
                                 contentDescription = null,
                                 modifier = Modifier
                                     .size(90.dp)

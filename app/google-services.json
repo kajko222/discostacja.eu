@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418673851661",
+    "project_id": "discostacja-5bbbc",
+    "storage_bucket": "discostacja-5bbbc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418673851661:android:edb053621380156a5a8444",
+        "android_client_info": {
+          "package_name": "eu.discostacja"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVY2Ig1jsB_7cphL6ifJdWnNsrITsNHtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

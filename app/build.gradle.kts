@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.kotlin.compose)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -65,6 +67,9 @@ dependencies {
     implementation(libs.compose.shimmer)
     implementation(libs.converter.gson)
     implementation(libs.androidx.foundation)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
 
     // Worker
     implementation(libs.androidx.work.runtime.ktx)

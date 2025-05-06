@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="eu.discostacja" />
+                  <option name="mobileSdkAppId" value="1:418673851661:android:edb053621380156a5a8444" />
+                  <option name="projectId" value="discostacja-5bbbc" />
+                  <option name="projectNumber" value="418673851661" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

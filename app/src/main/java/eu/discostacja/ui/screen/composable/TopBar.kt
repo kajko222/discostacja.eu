@@ -1,4 +1,4 @@
-package eu.discostacja.ui.screen.main.composable
+package eu.discostacja.ui.screen.composable
 
 import android.content.ActivityNotFoundException
 import android.content.Intent

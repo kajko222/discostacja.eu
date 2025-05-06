@@ -10,6 +10,8 @@ object AppPreferences : SettingsModel(DataStoreStorage.create(name = "disco_stac
 
     val enableNotifications by boolPref(true)
 
+    val doNotShowBackgroundProblemsDialogAgain by boolPref(false)
+
     val marqueeInfo by anyStringPref(
         MarqueeInfo.CONVERTER,
         emptyMap()

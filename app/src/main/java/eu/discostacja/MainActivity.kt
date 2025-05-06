@@ -9,10 +9,17 @@ import androidx.core.view.WindowCompat
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.generated.navgraphs.RootNavGraph
 import eu.discostacja.service.RadioSessionService
+import eu.discostacja.utils.isAppExpired
+import kotlin.system.exitProcess
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (isAppExpired()) {
+            finishAffinity()
+            exitProcess(0)
+        }
 
         WindowCompat.setDecorFitsSystemWindows(window, true)
 

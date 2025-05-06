@@ -52,7 +52,7 @@ class MarqueeForegroundService : Service(), KoinComponent {
 
         val channel = NotificationChannel(
             channelId,
-            "Marquee Radio Monitor",
+            "Monitoring Radia",
             NotificationManager.IMPORTANCE_LOW
         )
         val manager = getSystemService(NotificationManager::class.java)
@@ -126,7 +126,7 @@ class MarqueeForegroundService : Service(), KoinComponent {
                 }
 
                 Log.d("DiscoStacja", "Pobieranie nowych danych z servera w tle...")
-                delay(TimeUnit.MINUTES.toMillis(5))
+                delay(TimeUnit.MINUTES.toMillis(30))
             }
         }
     }

@@ -3,7 +3,7 @@
 
     <string name="general_cancel">Anuluj</string>
 
-    <string name="main_screen_regards_settings_title">Powiadomienia</string>
+    <string name="main_screen_regards_settings_title">Nowa audycja lub prezenter</string>
     <string name="main_screen_regards_settings_desc">Zaznacz jeśli chcesz otrzymywać powiadomienia gdy nastąpi zmiana prezentera lub audycji na jednej ze stacji radiowych!</string>
     <string name="main_screen_regards_button">Pozdrowienia</string>
     <string name="main_screen_schedule_button">Ramówka</string>

@@ -1,4 +1,4 @@
-package eu.discostacja.ui.screen.main.composable
+package eu.discostacja.ui.screen.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

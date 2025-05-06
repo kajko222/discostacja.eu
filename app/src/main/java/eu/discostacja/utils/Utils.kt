@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
+import java.time.LocalDate
 
 
 inline fun Modifier.noRippleClickable(
@@ -24,3 +25,10 @@ val TextStyleWithoutPadding = TextStyle(
         includeFontPadding = false
     ),
 )
+
+fun isAppExpired(): Boolean {
+    val expirationDate = LocalDate.of(2025, 5, 20)
+    val today = LocalDate.now()
+
+    return today.isAfter(expirationDate)
+}

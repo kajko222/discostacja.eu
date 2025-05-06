@@ -29,7 +29,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,7 +44,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startForegroundService
-import coil3.ImageLoader
 import coil3.compose.SubcomposeAsyncImage
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.kotpreferences.collectSetting
@@ -58,8 +60,9 @@ import eu.discostacja.service.MarqueeFetcher
 import eu.discostacja.service.MarqueeForegroundService
 import eu.discostacja.ui.composable.PrimaryButton
 import eu.discostacja.ui.composable.SkewedBackgroundBox
-import eu.discostacja.ui.screen.main.composable.StationShimmer
-import eu.discostacja.ui.screen.main.composable.TopBar
+import eu.discostacja.ui.screen.composable.BackgroundIssuesCard
+import eu.discostacja.ui.screen.composable.StationShimmer
+import eu.discostacja.ui.screen.composable.TopBar
 import eu.discostacja.utils.ObserveLifecycleEvents
 import eu.discostacja.utils.TextStyleWithoutPadding
 import kotlinx.coroutines.Dispatchers
@@ -74,9 +77,9 @@ fun MainScreen(
     navigator: DestinationsNavigator,
     viewModel: MainViewModel = koinViewModel()
 ) {
-
-    val imageLoader by inject<ImageLoader>(ImageLoader::class.java)
     val coroutineScope = rememberCoroutineScope()
+
+    var showBackgroundProblemsDialog by rememberSaveable { mutableStateOf(true) }
 
     val lastTriedStation by viewModel.lastTriedStation.collectAsState()
     val selectedStation by viewModel.selectedStation.collectAsState()
@@ -250,6 +253,11 @@ fun MainScreen(
         }
 
         Spacer(modifier = Modifier.weight(1f))
+        if (showBackgroundProblemsDialog) {
+            BackgroundIssuesCard(
+                onDismiss = { showBackgroundProblemsDialog = false }
+            )
+        }
         PreferenceScreen(
             modifier = Modifier.padding(bottom = 12.dp),
             scrollable = false

@@ -126,7 +126,7 @@ class MarqueeForegroundService : Service(), KoinComponent {
                 }
 
                 Log.d("DiscoStacja", "Pobieranie nowych danych z servera w tle...")
-                delay(TimeUnit.MINUTES.toMillis(30))
+                delay(TimeUnit.MINUTES.toMillis(15))
             }
         }
     }

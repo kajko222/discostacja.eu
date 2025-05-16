@@ -10,7 +10,6 @@ import androidx.compose.ui.text.TextStyle
 import okhttp3.OkHttpClient
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
-import java.time.LocalDate
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -31,13 +30,6 @@ val TextStyleWithoutPadding = TextStyle(
         includeFontPadding = false
     ),
 )
-
-fun isAppExpired(): Boolean {
-    val expirationDate = LocalDate.of(2025, 5, 20)
-    val today = LocalDate.now()
-
-    return today.isAfter(expirationDate)
-}
 
 fun getUnsafeOkHttpClient(): OkHttpClient {
     val trustAllCerts = arrayOf<TrustManager>(

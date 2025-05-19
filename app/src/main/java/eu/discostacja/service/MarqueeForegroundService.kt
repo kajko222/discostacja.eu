@@ -91,16 +91,21 @@ class MarqueeForegroundService : Service(), KoinComponent {
                     val oldMarqueeInfoMap: Map<String, MarqueeInfo?> = AppPreferences.marqueeInfo.value
                     val tempMarqueeInfoMap: MutableMap<String, MarqueeInfo?> = mutableMapOf()
 
-                    var shouldShowNewAuditionNotification = false
+                    var whereAuditionChanged = mutableListOf<String>()
                     var notificationText = ""
                     AppPreferences.radioStations.value.forEach { station ->
                         val oldMarqueeInfo = oldMarqueeInfoMap[station.name]
                         val newMarqueeInfo = marqueeFetcher.fetchMarqueeInfo(station)
 
-                        val presenterChanged = oldMarqueeInfo?.presenter != null && oldMarqueeInfo.presenter != newMarqueeInfo?.presenter
-                        val auditionChanged = oldMarqueeInfo?.audition != null && oldMarqueeInfo.audition != newMarqueeInfo?.audition
+                        val presenterChanged = oldMarqueeInfo?.presenter != newMarqueeInfo?.presenter
+                        val auditionChanged = oldMarqueeInfo?.audition != newMarqueeInfo?.audition
 
-                        shouldShowNewAuditionNotification = presenterChanged || auditionChanged
+                        if (presenterChanged) {
+                            whereAuditionChanged.add("\uD83C\uDF99\uFE0F Nowym prezenterem na stacji ${station.name} jest teraz ${newMarqueeInfo?.presenter}\n")
+                        }
+                        if (auditionChanged) {
+                            whereAuditionChanged.add("\uD83C\uDFA7 Nowa audycja na stacji ${station.name} to ${newMarqueeInfo?.audition}\n")
+                        }
 
                         if (newMarqueeInfo != null) {
                             tempMarqueeInfoMap[station.name] = newMarqueeInfo
@@ -109,7 +114,10 @@ class MarqueeForegroundService : Service(), KoinComponent {
                         notificationText += "📻 ${station.name} - ${newMarqueeInfo?.presenter}\n"
                     }
 
-                    if (shouldShowNewAuditionNotification) sendSoundNotification()
+                    if (whereAuditionChanged.isNotEmpty()) {
+                        Log.d("DiscoStacja", "Zmieniło się! Puszczam sound notyfikację")
+                        sendSoundNotification(whereAuditionChanged)
+                    }
 
                     // Update AppPreferencess
                     AppPreferences.marqueeInfo.update(tempMarqueeInfoMap)
@@ -120,18 +128,18 @@ class MarqueeForegroundService : Service(), KoinComponent {
                             .bigText(notificationText)
                     )
                     notificationManager.notify(1, staticNotifyBuilder.build())
+                    Log.d("DiscoStacja", "Pobieranie nowych danych z servera w tle... $tempMarqueeInfoMap")
 
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
 
-                Log.d("DiscoStacja", "Pobieranie nowych danych z servera w tle...")
                 delay(TimeUnit.MINUTES.toMillis(15))
             }
         }
     }
 
-    private fun sendSoundNotification() {
+    private fun sendSoundNotification(whereAuditionChanged: List<String>) {
         val notificationId = System.currentTimeMillis().toInt()
         val pushChannelId = "radio_updates_channel"
 
@@ -151,9 +159,18 @@ class MarqueeForegroundService : Service(), KoinComponent {
             notificationManager.createNotificationChannel(channel)
         }
 
+        val notificationContext = buildString {
+            whereAuditionChanged.forEach { change ->
+                append(change)
+            }
+        }
+
         val soundNotification = NotificationCompat.Builder(this, pushChannelId)
             .setContentTitle("DiscoStacja - Radio Online")
-            .setContentText("!!! Nowa audycja już jest !!!")
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .bigText(notificationContext)
+            )
             .setSmallIcon(R.drawable.logo)
             .setContentIntent(openAppIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)

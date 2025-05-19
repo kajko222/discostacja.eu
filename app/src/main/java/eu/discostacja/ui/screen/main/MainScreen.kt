@@ -73,6 +73,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.koin.java.KoinJavaComponent.inject
+import java.util.concurrent.TimeUnit
 
 @Destination<MainGraph>(start = true)
 @Composable
@@ -100,7 +101,7 @@ fun MainScreen(
             if (!AppPreferences.enableNotifications.value && shouldMonitoringForeground) {
                 marqueeFetcher.updateMarquee()
             }
-            delay(15000)
+            delay(TimeUnit.SECONDS.toMillis(15))
         }
     }
 
